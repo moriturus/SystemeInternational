@@ -120,7 +120,7 @@ struct MeasurementCompatibilityTests {
 
     @Test
     func semanticCompatRejectsNonFiniteScaledBaseValues() throws {
-        #expect(throws: QuantityError.nonFiniteValue) {
+        #expect(throws: CompatibilityError.nonFiniteValue) {
             let _: Quantity<Double, HugeSemanticLengthUnit, Linear> =
                 try compatSemanticQuantity(from: Measurement(value: 1, unit: UnitLength.meters))
         }

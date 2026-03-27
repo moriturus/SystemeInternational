@@ -54,7 +54,7 @@ package func compatDirectQuantity<UnitType: Dimension, Unit: FoundationBridgeabl
 
     do {
         return try Quantity<Double, Unit, Linear>(converted.value)
-    } catch QuantityError.nonFiniteValue {
+    } catch {
         throw CompatibilityError.nonFiniteValue
     }
 }
@@ -80,7 +80,7 @@ package func compatSemanticQuantity<UnitType: Dimension, Unit: FoundationBridgea
 
     let scaledBase = Unit.scale.apply(to: converted.value)
     guard scaledBase.isFinite else {
-        throw QuantityError.nonFiniteValue
+        throw CompatibilityError.nonFiniteValue
     }
 
     let canonicalQuantity = Quantity<Double, CanonicalUnit<Unit.CanonicalDimension>, Linear>(
@@ -182,7 +182,7 @@ where Unit.Dimension == TemperatureDimension {
 
     do {
         return try Quantity<Double, Unit, Linear>(kelvinIntervalValue)
-    } catch QuantityError.nonFiniteValue {
+    } catch {
         throw CompatibilityError.nonFiniteValue
     }
 }
